@@ -264,4 +264,6 @@ var jsnotiftray = {
   },
 }
 
-jsnotiftray.init();
+document.addEventListener('DOMContentLoaded', function() {
+  jsnotiftray.init();
+}, false);
