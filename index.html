@@ -7,9 +7,11 @@ layout: default
   
   <h4>Use the buttons below for a demonstration</h4>
   
-  <button class="demo">Test 1</button>
-  <button class="demo">Test 2</button>
-  <button class="demo">Test 3</button>
+  <span id="button-holder">
+    <button class="demo" id="demo1">Test 1</button>
+    <button class="demo" id="demo2">Test 2</button>
+    <button class="demo" id="demo3">Test 3</button>
+  </span>
 
   <ul class="post-list">
     {% for post in site.posts %}
@@ -22,5 +24,31 @@ layout: default
       </li>
     {% endfor %}
   </ul>
+
+  <script type="text/javascript">
+    var demo1 = document.getElementById("demo1"),
+        demo2 = document.getElementById("demo2"),
+        demo3 = document.getElementById("demo3"),
+        holder = document.getElementById("button-holder");
+    
+    holder.addEventListener("click", function(e) {
+      switch(e.target.id) {
+        case "demo1":
+          jsnotiftray.notify("Info", "All your base are belong to us.", "info", true);
+          break;
+        case "demo2":
+          jsnotiftray.notify("Warning", "Somebody set up us the bomb", "info", false, 10);
+          break;
+        case "demo3":
+          jsnotiftray.notify("Error!", "You have no chance to survive make your time.", "error", true);
+          break;
+        default:
+          break;
+      }
+      e.stopPropagation();
+    }, false);
+    
+    
+  </script>
 
 </div>
