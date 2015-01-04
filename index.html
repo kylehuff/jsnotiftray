@@ -1,1 +1,26 @@
-Coming soon
+---
+layout: default
+---
+
+<div class="home">
+  <h3>jsnotiftray is a simple JavaScript notification utility in tray format</h3>
+  
+  <h4>Use the buttons below for a demonstration</h4>
+  
+  <button class="demo">Test 1</button>
+  <button class="demo">Test 2</button>
+  <button class="demo">Test 3</button>
+
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>
