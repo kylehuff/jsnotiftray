@@ -204,9 +204,10 @@ var jsnotiftray = {
             jsnotiftray.timeout = setTimeout(jsnotiftray.notification.timer.draw, t); // Redraw
           else {
             setTimeout(function() {
-              jsnotiftray.notification.timer.style.opacity = '0';
+              if (jsnotiftray.notification.timer)
+                jsnotiftray.notification.timer.style.opacity = '0';
+              jsnotiftray.hide();
             }, 100);
-            jsnotiftray.hide();
           }
         } catch (e) { // We already deleted this timer
           clearTimeout(jsnotiftray.timeout);
@@ -255,10 +256,11 @@ var jsnotiftray = {
     jsnotiftray.notification.style.opacity = "1";
     jsnotiftray.notification.style.left = "0";
     jsnotiftray.notification.style.bottom = "0";
+    return jsnotiftray.notification;
   },
 
   show: function() {
-    this.notify.apply(this, arguments);
+    return this.notify.apply(this, arguments);
   },
 }
 
