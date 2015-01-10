@@ -1,0 +1,22 @@
+{
+  "name": "jsnotiftray",
+  "main": "jsnotiftray.js",
+  "version": "0.0.2",
+  "homepage": "http://kylehuff.github.io/jsnotiftray/",
+  "authors": [
+    "Kyle L. Huff <kyle.huff@curetheitch.com>"
+  ],
+  "description": "A simple JavaScript notification in tray format",
+  "keywords": [
+    "notification",
+    "tray"
+  ],
+  "license": "BSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
