@@ -263,7 +263,7 @@ var jsnotiftray = {
     jsnotiftray.notification.style.opacity = "1";
     jsnotiftray.notification.style.left = "0";
     jsnotiftray.notification.style.bottom = "0";
-    return jsnotiftray.notification;
+    return jsnotiftray;
   },
 
   show: function() {
