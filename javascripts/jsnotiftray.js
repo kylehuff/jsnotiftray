@@ -54,6 +54,7 @@ var jsnotiftray = {
     display: inline-block;\n\
     text-align: left;\n\
     vertical-align: top;\n\
+    padding-right: 16px;\n\
   }\n\
   .jsnotiftray-text .jsnotiftray-title {\n\
     font-size: 18px;\n\
