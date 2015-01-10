@@ -117,6 +117,7 @@ var jsnotiftray = {
     // Message text group
     this.notification.msg = document.createElement("span");
     this.notification.msg.setAttribute("class", "jsnotiftray-text");
+    this.notification.msg.style.overflowY = "auto";
     this.notification.group.appendChild(this.notification.msg);
 
     // Message header
