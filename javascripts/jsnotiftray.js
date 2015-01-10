@@ -51,7 +51,6 @@ var jsnotiftray = {
   .jsnotiftray-text {\n\
     color: #fff;\n\
     margin-top: 10px;\n\
-    display: inline-block;\n\
     text-align: left;\n\
     vertical-align: top;\n\
   }\n\
