@@ -97,6 +97,7 @@ var jsnotiftray = {
     // Notification box
     this.notification = document.createElement("span");
     this.notification.setAttribute("class", "jsnotiftray-vcenter jsnotiftray");
+    this.notification.css({'max-height': window.innerHeight - 2 + "px"});
     this.notification.addEventListener("click", function(e) {
       if (e.target === e.currentTarget)
         this.hide();
