@@ -97,7 +97,6 @@ var jsnotiftray = {
     // Notification box
     this.notification = document.createElement("span");
     this.notification.setAttribute("class", "jsnotiftray-vcenter jsnotiftray");
-    this.notification.style.maxHeight = window.innerHeight - 2 + "px";
     this.notification.addEventListener("click", function(e) {
       if (e.target === e.currentTarget)
         jsnotiftray.clickHandler();
@@ -118,7 +117,6 @@ var jsnotiftray = {
     this.notification.msg = document.createElement("span");
     this.notification.msg.setAttribute("class", "jsnotiftray-text");
     this.notification.msg.style.overflowY = "auto";
-    this.notification.msg.style.maxHeight = window.innerHeight - 28 + "px";
     this.notification.group.appendChild(this.notification.msg);
 
     // Message header
@@ -237,6 +235,8 @@ var jsnotiftray = {
   },
 
   notify: function(title, msg, type, dismiss, timeout) {
+    this.notification.style.maxHeight = window.innerHeight - 2 + "px";
+    this.notification.msg.style.maxHeight = window.innerHeight - 28 + "px";
     if (this !== jsnotiftray.notification) {
       if (title !== undefined)
         jsnotiftray.notification.msg.header.innerHTML = title;
@@ -273,4 +273,9 @@ var jsnotiftray = {
 
 document.addEventListener('DOMContentLoaded', function() {
   jsnotiftray.init();
+}, false);
+
+window.addEventListener('resize', function(event){
+  this.notification.style.maxHeight = window.innerHeight - 2 + "px";
+  this.notification.msg.style.maxHeight = window.innerHeight - 28 + "px";
 }, false);
