@@ -51,6 +51,7 @@ var jsnotiftray = {
   .jsnotiftray-text {\n\
     color: #fff;\n\
     margin-top: 10px;\n\
+    display: inline-block;\n\
     text-align: left;\n\
     vertical-align: top;\n\
   }\n\
@@ -116,7 +117,6 @@ var jsnotiftray = {
     this.notification.msg = document.createElement("span");
     this.notification.msg.setAttribute("class", "jsnotiftray-text");
     this.notification.msg.style.overflowY = "auto";
-    this.notification.msg.style.width = "100%";
     this.notification.group.appendChild(this.notification.msg);
 
     // Message header
