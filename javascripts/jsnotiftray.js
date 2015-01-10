@@ -276,6 +276,6 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 window.addEventListener('resize', function(event){
-  this.notification.style.maxHeight = window.innerHeight - 2 + "px";
-  this.notification.msg.style.maxHeight = window.innerHeight - 28 + "px";
+  jsnotiftray.notification.style.maxHeight = window.innerHeight - 2 + "px";
+  jsnotiftray.notification.msg.style.maxHeight = window.innerHeight - 28 + "px";
 }, false);
