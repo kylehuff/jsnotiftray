@@ -99,7 +99,7 @@ var jsnotiftray = {
     this.notification = document.createElement("span");
     this.notification.setAttribute("class", "jsnotiftray-vcenter jsnotiftray");
     this.notification.addEventListener("click", function(e) {
-      if (e.target === e.currentTarget)
+      if (e.target === e.currentTarget && jsnotiftray.clickHandler)
         jsnotiftray.clickHandler();
     }, false);
 
@@ -227,12 +227,16 @@ var jsnotiftray = {
     jsnotiftray.hide();
   },
 
+  hideHandler: function() {
+  },
+
   hide: function() {
     jsnotiftray.notification.style.opacity = "0";
     jsnotiftray.notification.style.left = "-100%";
     jsnotiftray.notification.style.bottom = "-100px";
     clearTimeout(jsnotiftray.timeout);
     jsnotiftray.notification.delete_timer();
+    jsnotifytray.hideHandler();
   },
 
   notify: function(title, msg, type, dismiss, timeout) {
