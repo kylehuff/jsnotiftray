@@ -236,7 +236,7 @@ var jsnotiftray = {
     jsnotiftray.notification.style.bottom = "-100px";
     clearTimeout(jsnotiftray.timeout);
     jsnotiftray.notification.delete_timer();
-    jsnotifytray.hideHandler();
+    jsnotiftray.hideHandler();
   },
 
   notify: function(title, msg, type, dismiss, timeout) {
