@@ -12,7 +12,7 @@ var jsnotiftray = {
       width: 100%;\n\
       position: fixed;\n\
       opacity: 0;\
-      left: -100%;\n\
+      left: 0;\n\
       bottom: -100%;\n\
       background: rgba(0, 0, 0, 0.9);\n\
       border: none;\n\
@@ -42,6 +42,7 @@ var jsnotiftray = {
     margin: 8px 0;\n\
     display: inline-block;\n\
     cursor: default;\n\
+    width: 90%;\n\
   }\n\
   .jsnotiftray-icon {\n\
     font-size: 4em;\n\
@@ -220,7 +221,10 @@ var jsnotiftray = {
     this.notification.hide = this.hide;
     this.notification.show = this.notify;
 
+    this.max_height = null;
+
     document.body.appendChild(this.notification);
+    return jsnotiftray;
   },
 
   showHandler: function() {
@@ -235,16 +239,35 @@ var jsnotiftray = {
 
   hide: function() {
     jsnotiftray.notification.style.opacity = "0";
-    jsnotiftray.notification.style.left = "-100%";
-    jsnotiftray.notification.style.bottom = "-100px";
+    jsnotiftray.notification.style.left = "0px";
+    jsnotiftray.notification.style.bottom = "-100%";
     clearTimeout(jsnotiftray.timeout);
     jsnotiftray.notification.delete_timer();
     jsnotiftray.hideHandler();
   },
 
+  height: function(height) {
+    if (height !== undefined)
+      height = parseFloat(height);
+    else
+      height = null
+    jsnotiftray.notification.style.height = (height !== null) ? height + "px" : "";
+    this.max_height = height;
+  },
+
   notify: function(title, msg, type, dismiss, timeout) {
-    this.notification.style.maxHeight = window.innerHeight - 2 + "px";
-    this.notification.msg.style.maxHeight = window.innerHeight - 28 + "px";
+
+    if (this.max_height !== null) {
+      var notif_max_height = jsnotiftray.max_height;
+      var msg_max_height = jsnotiftray.max_height - 28;
+    } else {
+      var notif_max_height = window.innerHeight - 2;
+      var msg_max_height = window.innerHeight - 28;
+    }
+
+    this.notification.style.maxHeight = notif_max_height + "px";
+    this.notification.msg.style.maxHeight = msg_max_height + "px";
+
     if (this !== jsnotiftray.notification) {
       if (title !== undefined)
         jsnotiftray.notification.msg.header.innerHTML = title;
@@ -252,7 +275,7 @@ var jsnotiftray = {
         jsnotiftray.notification.msg.msgbody.innerHTML = msg;
 
       if (type !== undefined) {
-        var glyphtype = (type === "error") ? "exclamation-sign" : (type === "warn") ? "warning-sign" : "info-sign";
+        var glyphtype = (type === "error") ? "exclamation-sign" : (type === "warn") ? "warning-sign" : (type === "info") ? "info-sign" : type;
         jsnotiftray.notification.icon.setAttribute("class", jsnotiftray.notification.icon.classbase + " glyphicon-" + glyphtype);
         jsnotiftray.notification.setAttribute("class", "jsnotiftray-vcenter jsnotiftray jsnotiftray-" + type);
       }
@@ -280,11 +303,15 @@ var jsnotiftray = {
   },
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  jsnotiftray.init();
-}, false);
+window.addEventListener('resize', function(event) {
+  if (jsnotiftray.max_height !== null) {
+    var notif_max_height = jsnotiftray.max_height;
+    var msg_max_height = jsnotiftray.max_height - 28;
+  } else {
+    var notif_max_height = window.innerHeight - 2;
+    var msg_max_height = window.innerHeight - 28;
+  }
 
-window.addEventListener('resize', function(event){
-  jsnotiftray.notification.style.maxHeight = window.innerHeight - 2 + "px";
-  jsnotiftray.notification.msg.style.maxHeight = window.innerHeight - 28 + "px";
-}, false);
+  jsnotiftray.notification.style.maxHeight = notif_max_height + "px";
+  jsnotiftray.notification.msg.style.maxHeight = msg_max_height + "px";
+}, true);
